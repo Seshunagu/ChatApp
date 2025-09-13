@@ -1,7 +1,7 @@
-package com.eazybyts.cha.config;
+package com.chat_App.config;
 
-import com.eazybyts.cha.security.JwtAuthenticationEntryPoint;
-import com.eazybyts.cha.security.JwtAuthenticationFilter;
+import com.chat_App.security.JwtAuthenticationEntryPoint;
+import com.chat_App.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
