@@ -1,4 +1,4 @@
-package com.eazybyts.cha.security;
+package com.chat_App.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
