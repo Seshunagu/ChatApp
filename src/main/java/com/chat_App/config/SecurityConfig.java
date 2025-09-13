@@ -68,11 +68,22 @@ public class SecurityConfig {
             .exceptionHandling(e -> e.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
+                // Allow preflight requests
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers("/api/auth/**", "/", "/index.html", "/ws/**").permitAll()
+                // Public endpoints
+                .requestMatchers(
+                        "/api/auth/**",   // Auth endpoints
+                        "/", 
+                        "/index.html",
+                        "/favicon.ico",
+                        "/static/**",     // Static files
+                        "/ws/**"          // WebSocket handshake
+                ).permitAll()
+                // All other requests require authentication
                 .anyRequest().authenticated()
             );
 
+        // Add JWT filter before username/password authentication
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
